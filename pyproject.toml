@@ -3,7 +3,6 @@ name = "tim-tam-repo"
 version = "0.1.0"
 description = "A cookie cutter repo template to base other repos on"
 authors = ["Your Name <you@example.com>"]
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.11.6"
