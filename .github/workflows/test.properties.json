@@ -1,0 +1,6 @@
+{
+    "name": "test",
+    "description": "Install deps, lint and run the tests",
+    "iconName": "python",
+    "categories": ["Python"]
+}
