@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "tim-tam-repo"
+version = "0.1.0"
+description = "A cookie cutter repo template to base other repos on"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "3.11.6"
+pandas = "^2.1.1"
+numpy = "^1.26.0"
+jupyter = "^1.0.0"
+pytest = "^7.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
