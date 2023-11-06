@@ -171,6 +171,8 @@ cython_debug/
 
 # Data 
 data/**
+!data/static/**
+
 !data/raw
 data/raw/**
 !data/raw/.gitkeep
