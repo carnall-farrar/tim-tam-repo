@@ -36,15 +36,11 @@ Never commit a `.env` file to git, as this risks sharing secret AWS login inform
 
 Usual contents of `.env` are:
 
-  export AWS_ACCESS_KEY="my-access-key"
-
-  export AWS_SECRET_KEY="my-secrete-key"
-
-  export AWS_ATHENA_S3_STAGING_DIR="my-staging-dir"
-
-  export AWS_REGION="my-region"
-
-  export AWS_ATHENA_SCHEMA_NAME="my-schema-name"
+* export AWS_ACCESS_KEY="my-access-key"
+* export AWS_SECRET_KEY="my-secrete-key"
+* export AWS_ATHENA_S3_STAGING_DIR="my-staging-dir"
+* export AWS_REGION="my-region"
+* export AWS_ATHENA_SCHEMA_NAME="my-schema-name"
 
 
 #### Github actions
