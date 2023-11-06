@@ -1,21 +1,20 @@
 # CF template repository
 
-This repository is a template for analytical and product projects at CF, written in Python.
+This repository is a template for analytical projects and products at CF, written in Python.
 
 It comprises a recommended folder structure, git configuration and utilities.
 
-Click `Use this template` above to create a new repo in GitHUb which use this template.
+Click `Use this template` above to create a new repo in GitHUb which uses this template.
 
 ## Things to change
 Once you have created the new repo, the following actions are important:
 
-#### Rename the `timtam` directory
-
-To stick to python convention, name the main code folder after the name of the project. 
-Choose a name that is short and easy for others to find when searching. 
+#### Rename the `timtam` package directory
+To stick to python convention, name the main code folder (package) something similar to the name of the project. 
+It's recommended to keep this short.
 
 #### Rename any import statements, using the new package name
-Now that you have changed the `timtam` package name, for imports to work you'll need to change any import staments, e.g.
+Now that you have changed the `timtam` package name, you'll need to change any import staments, e.g.
 
 ```python
 # current
@@ -30,18 +29,23 @@ The `name` attribute in the `pyproject.toml` is currently set to the template na
 
 Please also update the project description in the `pyproject.toml`.
 
-#### Add `.env` file with AWS credentials
+#### Add a `.env` file with AWS credentials
 A `.env` file contains environment variables, including things like passwords for interacting with our data in AWS.
-By default, any `.env` file is not tracked by git, as it is listed in the `.gitignore`
+By default, any `.env` file is not tracked by git, as it is listed in the `.gitignore`.
 Never commit a `.env` file to git, as this risks sharing secret AWS login information outside the organisation.
 
 Usual contents of `.env` are:
 
   export AWS_ACCESS_KEY="my-access-key"
+
   export AWS_SECRET_KEY="my-secrete-key"
+
   export AWS_ATHENA_S3_STAGING_DIR="my-staging-dir"
+
   export AWS_REGION="my-region"
+
   export AWS_ATHENA_SCHEMA_NAME="my-schema-name"
+
 
 #### Github actions
 Note GitHub actions have been deactivated by default.
