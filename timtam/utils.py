@@ -1,11 +1,12 @@
 import os
 
-STATIC_DIR = "static"
-
-DATA_DIR = "data"
-OUTPUT_DIR = "outputs"
-PROCESSED_DIR = "processed"
-RAW_DIR = "raw"
+from timtam.config import (
+    STATIC_DIR,
+    DATA_DIR,
+    RAW_DIR,
+    PROCESSED_DIR,
+    OUTPUT_DIR,
+)
 
 
 def get_root_path() -> str:

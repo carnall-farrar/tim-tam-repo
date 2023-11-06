@@ -9,10 +9,21 @@ Click `Use this template` above to create a new repo in GitHUb which use this te
 ## Things to change
 Once you have created the new repo, the following actions are important:
 
-#### Rename the `src` directory
+#### Rename the `timtam` directory
 
 To stick to python convention, name the main code folder after the name of the project. 
 Choose a name that is short and easy for others to find when searching. 
+
+#### Rename any import statements, using the new package name
+Now that you have changed the `timtam` package name, for imports to work you'll need to change any import staments, e.g.
+
+```python
+# current
+from timtam.utils import DATA_DIR
+
+# new
+from mypackage.utils import DATA_DIR
+```
 
 #### Rename the project in the `pyproject.toml`
 The `name` attribute in the `pyproject.toml` is currently set to the template name, but must be set to the new project name.
