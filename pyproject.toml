@@ -5,7 +5,7 @@ description = "A cookie cutter repo template to base other repos on"
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "3.11.6"
+python = "~3.11"
 pandas = "^2.1.1"
 numpy = "^1.26.0"
 jupyter = "^1.0.0"
