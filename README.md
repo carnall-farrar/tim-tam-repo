@@ -1,75 +1,66 @@
-<div id="top"></div>
+# CF template repository
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a>
-    <img src="cf-logo.svg" alt="Logo" width="80" height="80">
-  </a>
+This repository is a template for analytical projects and products at CF, written in Python.
 
-  <h3 align="center">Name of project</h3>
+It comprises a recommended folder structure, git configuration and utilities.
 
-  <p align="center">
-    Comment about the project !
-  </p>
-</div>
+Click `Use this template` above to create a new repo in GitHub based on this template.
 
+## Things to change
+Once you have created the new repo, the following actions are important:
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-  </ol>
-</details>
+#### Rename the `timtam` package directory
+To stick to python convention, name the main code folder (package) something similar to the name of the project. 
+It's recommended to keep this short, since it will be referenced in all imports between modules 
+(`numpy`, `pandas` and `sklearn` are good examples).
 
-<!-- ABOUT THE PROJECT -->
+#### Rename any import statements, using the new package name
+Now that you have changed the `timtam` package name, you'll need to change any import staments, e.g.
 
-## About this project
+```python
+# current
+from timtam.utils import DATA_DIR
 
-This section should briefly explain what the project is about, and what the codebase is actually doing.
-<p align="right">(<a href="#top">back to top</a>)</p>
+# new
+from mypackage.utils import DATA_DIR
+```
 
-## Getting started
+#### Rename the project in the `pyproject.toml`
+The `name` attribute in the `pyproject.toml` is currently set to the template name, but must be set to the new project name.
 
-### Prerequisites
-The following are prerequisites to run this codebase:
- - Python
- - Poetry
+Please also update the project description in the `pyproject.toml`.
+
+#### Add a `.env` file with AWS credentials
+A `.env` file contains environment variables, including things like passwords for interacting with our data in AWS.
+By default, any `.env` file is not tracked by git, as it is listed in the `.gitignore`.
+Never commit a `.env` file to git, as this risks sharing secret AWS login information outside the organisation.
+
+Usual contents of `.env` are:
+
+```
+export AWS_ACCESS_KEY="my-access-key"
+export AWS_SECRET_KEY="my-secrete-key"
+export AWS_ATHENA_S3_STAGING_DIR="my-staging-dir"
+export AWS_REGION="my-region"
+export AWS_ATHENA_SCHEMA_NAME="my-schema-name"
+```
 
 
- ### Installation
-1. Install the poetry environment
-   ```sh
-   poetry install
-   ```
-<p align="right">(<a href="#top">back to top</a>)</p>
+#### Github actions
+Note GitHub actions have been deactivated by default.
+Actions will bill the CF account each time they run, so please don't re-enable them unless you know they are needed.
 
-## Usage
-Put all the steps that someone would need to run the codebase in this section
+#### Replace this README.md
+Use a readme that explains your project, e.g. using `template_readme.md`.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
-## Roadmap
+## General documentation
 
-Keep this section in if you like ticking things off :)
+#### `data` vs `static` directories
+The `data` directory is for storing raw data, processed data (produced by this code but not final) and output data.
+The contents of these folders should not be tracked by git,
+because they may contain sensitive information and may be large in size.
 
-[ ] - aim 1 <br>
-[ ] - aim 2 <br>
-[ ] - aim 3
+The `static` directory is for static (unchanging) data that is needed for the code to run and is not sensitive,
+such as lookup tables. These need to be shared between developers using the code, and should be tracked by git.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
