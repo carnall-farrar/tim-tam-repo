@@ -4,14 +4,15 @@ This repository is a template for analytical projects and products at CF, writte
 
 It comprises a recommended folder structure, git configuration and utilities.
 
-Click `Use this template` above to create a new repo in GitHUb which uses this template.
+Click `Use this template` above to create a new repo in GitHub based on this template.
 
 ## Things to change
 Once you have created the new repo, the following actions are important:
 
 #### Rename the `timtam` package directory
 To stick to python convention, name the main code folder (package) something similar to the name of the project. 
-It's recommended to keep this short.
+It's recommended to keep this short, since it will be referenced in all imports between modules 
+(`numpy`, `pandas` and `sklearn` are good examples).
 
 #### Rename any import statements, using the new package name
 Now that you have changed the `timtam` package name, you'll need to change any import staments, e.g.
@@ -36,11 +37,13 @@ Never commit a `.env` file to git, as this risks sharing secret AWS login inform
 
 Usual contents of `.env` are:
 
-* export AWS_ACCESS_KEY="my-access-key"
-* export AWS_SECRET_KEY="my-secrete-key"
-* export AWS_ATHENA_S3_STAGING_DIR="my-staging-dir"
-* export AWS_REGION="my-region"
-* export AWS_ATHENA_SCHEMA_NAME="my-schema-name"
+```
+export AWS_ACCESS_KEY="my-access-key"
+export AWS_SECRET_KEY="my-secrete-key"
+export AWS_ATHENA_S3_STAGING_DIR="my-staging-dir"
+export AWS_REGION="my-region"
+export AWS_ATHENA_SCHEMA_NAME="my-schema-name"
+```
 
 
 #### Github actions
