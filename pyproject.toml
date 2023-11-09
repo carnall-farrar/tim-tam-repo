@@ -13,6 +13,7 @@ pytest = "^7.4.2"
 matplotlib = "^3.8.1"
 pyathena = "^3.0.10"
 python-dotenv = "^1.0.0"
+black = "^23.11.0"
 
 
 [build-system]
