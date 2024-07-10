@@ -20,19 +20,28 @@ In the future QA should occur before the code is merged to main, but let's walk 
 **QAer:**  
 **Developer:**  
 **QA date:**  
-**Task ID:**
+**QA level:** Level 1 / Level 2 / Level 3  
+**QA's description of task:**
 
 ---
 
-### Code
+### Structure
 
-**QA's description of task:**  
 **Is the code readable?** Not at all / Sometimes / *Mostly / *Completely  
 **Does the code follow best practices?** Not at all / Sometimes / *Mostly / *Completely  
-**Can you run the code?** *Yes / No  
-**Can you produce the same output as the developer?** *Yes / No  
-**Comparison to manual calculations (if feasible):**  
 **Any feedback for developer on code:**
+**Can you run the code?** *Yes / No  
+**(Level 3 only) Are there sufficient comments for a new developer to follow the code?** *Yes / No
+
+\*Required for acceptance
+
+---
+
+### Accuracy
+
+**Can you produce the same output as the developer?** \*Yes / No  
+**Comparison to external data / sense check of outputs:**  
+**(Level 2+ only) Comparison to manual calculations or review of tests:**
 
 \*Required for acceptance
 
@@ -40,10 +49,10 @@ In the future QA should occur before the code is merged to main, but let's walk 
 
 ### Approach
 
-**Comparison to external data / sense check of outputs:**  
-**Is the approach fit for purpose?** *Yes / No (with justification)  
-**What are the risks of the approach and are they acceptable?** *Yes / No with risks described  
-**Any feedback for developer on approach:**
+**(Level 2+ only) Brief description of the approach**  
+**(Level 2+ only) Is the approach fit for purpose?** *Yes / No (with justification)  
+**(Level 2+ only) What are the risks of the approach and are they acceptable?** *Yes / No with risks described  
+**(Level 2+ only) Any feedback for developer on approach:**
 
 \*Required for acceptance
 
