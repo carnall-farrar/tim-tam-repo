@@ -1,8 +1,16 @@
 import pandas as pd
+from timtam.utils import get_processed_path
 
 MISSING_VALUE_FILLERS = {
     # Dictionary where the keys are the names of the tables and the values are
     # a list of all characters that denote invalid values, e.g. '99'
+}
+
+INGESTION_FUNCTION = "ingestion_function"
+
+ALL_TABLES = {
+    # Nested dictionary where each entry is:
+    # table_name: {INGESTION_FUNCTION: function to ingest table}
 }
 
 def count_missing_values(df:pd.DataFrame, table_name:str) -> pd.DataFrame:
@@ -57,6 +65,84 @@ def count_invalid_values(
 
     return pd.DataFrame.from_dict(value_counts, orient="index", columns=[table_name])
 
-# TODO: Function to help sense check if a field contains invalid values
+def values_sense_check(df:pd.DataFrame, print_output:bool=True) -> dict:
+    ''' 
+    Looks to identify potential invalid values in a column by looking at unique value counts.
+
+    Args:
+        - df: Table to analyse
+        - print_output: A boolean which determines whether to print results while running the function. 
+            Default is set to True.
+
+    Retruns: 
+        - dict: A dictionary containing the unique value counts and their frequencies for each column.
+    '''
+    column_counts = {}
+    for column in df.columns:
+        unique_count = df[column].nunique()
+        value_counts = df[column].value_counts(dropna=False)
+
+        column_counts[column] = {
+            "nunique": unique_count,
+            "value_counts": value_counts
+        }
+    # Print results in a readable format
+    if print_output:
+        print("Invalid value analysis")
+        print("-" * 40)
+        for column, stats in column_counts.items():
+            print(f"Column: {column}")
+            print(f"Number of unique values: {stats['nunique']}")
+            print("Value counts:")
+            print(stats["value_counts"])
+            print("-" * 40)
+    return column_counts
 
 # TODO: Completeness table
+def check_table_completeness():
+    '''
+    
+    '''
+    df_missing_values = pd.DataFrame
+    df_invalid_values = pd.DataFrame
+    dict_value_sense_check = {}
+
+    for key, value in ALL_TABLES.items():
+        df = value[INGESTION_FUNCTION]()
+        df = df.drop_duplicates(ignore_index=True)
+        print(f"------------------------Table: {key}---------------------")
+        print(df.dtypes)
+        print(f"Number of rows: {df.shape[0]}")
+        df_missing_values = pd.merge(
+            df_missing_values,
+            count_missing_values(df, key),
+            left_index=True,
+            right_index=True,
+            how="outer",
+        )
+        df_invalid_values = pd.merge(
+            df_invalid_values,
+            count_invalid_values(df, key),
+            left_index=True,
+            right_index=True,
+            how="outer",
+        )
+        value_sense_check_results = values_sense_check(df, print_output=False)
+        dict_value_sense_check[key] = value_sense_check_results
+    
+    # Save missing and invalid values
+    df_missing_values.to_csv(get_processed_path("dq_missing_values.csv"), index=False)
+    df_invalid_values.to_csv(get_processed_path("dq_invalid_values.csv"), index=False)
+
+    # Flattern sense check outputs and save
+    flat_sense_check = []
+    for table, columns in dict_value_sense_check.items():
+        for column, stats in columns.items(): 
+            flat_sense_check.append({
+                "table": table,
+                "column": column,
+                "nunique": stats["nunique"],
+                "value_counts": stats["value_counts"].to_dict()
+            })
+    df_flat_sense_check = pd.DataFrame(flat_sense_check)
+    df_flat_sense_check.to_csv(get_processed_path("dq_value_sense_check.csv"), index=False)
