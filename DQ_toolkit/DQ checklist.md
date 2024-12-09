@@ -68,7 +68,11 @@ Maddie
 
 ## Completeness checks
 
+Before we start working with new datasets, it is always a good idea to perform some data quality checks beforehand. Assessing the completeness of dataset fields is important for understanding data quality and its potential impact on your analysis. The `completeness_utils.py` module is designed to perform data quality checks on input tables and provides the following functionalities:
 
+1. Identifies and counts **missing values** for each column in a table.
+2. Detects and counts values that are flagged as **invalid** based on pre-defined criteria (e.g., placeholder values like "99" or "unknown").
+3. Conducts a **sense check of the values** by looking at the distribution of unique values in each column. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

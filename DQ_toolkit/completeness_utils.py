@@ -98,10 +98,10 @@ def values_sense_check(df:pd.DataFrame, print_output:bool=True) -> dict:
             print("-" * 40)
     return column_counts
 
-# TODO: Completeness table
 def check_table_completeness():
     '''
-    
+    Runs through all input tables and checks completeness, invalid values, and performs
+    a sense check of the values in the tables.
     '''
     df_missing_values = pd.DataFrame
     df_invalid_values = pd.DataFrame
@@ -134,7 +134,7 @@ def check_table_completeness():
     df_missing_values.to_csv(get_processed_path("dq_missing_values.csv"), index=False)
     df_invalid_values.to_csv(get_processed_path("dq_invalid_values.csv"), index=False)
 
-    # Flattern sense check outputs and save
+    # Flatten sense check outputs and save
     flat_sense_check = []
     for table, columns in dict_value_sense_check.items():
         for column, stats in columns.items(): 
