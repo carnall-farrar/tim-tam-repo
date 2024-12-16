@@ -2,8 +2,8 @@ import pandas as pd
 from timtam.utils import get_processed_path
 
 MISSING_VALUE_FILLERS = {
-    # Dictionary where the keys are the names of the tables and the values are
-    # a list of all characters that denote invalid values, e.g. '99'
+    # column_1 : [list_of_invalid_values],
+    # column_2 : [list_of_invalid_values]
 }
 
 INGESTION_FUNCTION = "ingestion_function"
